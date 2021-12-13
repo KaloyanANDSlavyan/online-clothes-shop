@@ -1,15 +1,22 @@
 <template>
-    <div class="navigation-bar">
-        <h1>OCS</h1>
-        <router-link to="/">Home</router-link>
-        <router-link to="/about">About</router-link>
-    </div>
-    <br />
+    <NavBar />
     <router-view />
 </template>
 
 <script>
-export default {};
+import NavBar from "./components/NavBar.vue";
+
+export default {
+    components: { NavBar },
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+</style>
