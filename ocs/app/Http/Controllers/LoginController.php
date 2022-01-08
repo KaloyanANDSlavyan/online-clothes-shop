@@ -10,12 +10,12 @@ class LoginController extends Controller
 {
     public function login(Request $request) {
         $request->validate([
-            'username' => ['required', 'string'],
+            'email' => ['required', 'string'],
             'password' => ['required']
 
         ]);
 
-        if(Auth::attempt($request->only('username', 'password'))) {
+        if(Auth::attempt($request->only('email', 'password'))) {
             return response()->json(Auth::user(), 200);
         }
         throw ValidationException::withMessages([

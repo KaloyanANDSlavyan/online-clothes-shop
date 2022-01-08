@@ -1,6 +1,7 @@
 <template>
     <NavBar />
     <router-view />
+    
 </template>
 
 <script>
@@ -19,4 +20,12 @@ export default {
     height: 100%;
     width: 100%;
 }
+html, body {
+    display: block;
+
+    height: 100%;
+}
+
+
+
 </style>

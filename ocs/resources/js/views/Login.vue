@@ -13,22 +13,18 @@
                     Successfully logged in.
                 </div>
                 <div class="input-container name">
-                    <label for="username">Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        v-model="user.username"
-                    />
+                    <label for="email">Email</label>
+                    <input type="email" name="email" v-model="user.email" />
                     <div
                         class="alert alert-danger"
-                        v-if="errors.username && errors"
+                        v-if="errors.email && errors"
                     >
-                        {{ errors.username[0] }}
+                        {{ errors.email[0] }}
                     </div>
 
                     <label for="password">Password</label>
                     <input
-                        type="text"
+                        type="password"
                         name="password"
                         v-model="user.password"
                     />
@@ -38,6 +34,10 @@
                     >
                         {{ errors.password[0] }}
                     </div>
+                    <div class="createAccount">
+                        <p>Don't have an account?</p>
+                        <router-link to="register">Create one</router-link>
+                    </div>
 
                     <button id="btn" type="submit" @click.prevent="loginUser">
                         Login
@@ -46,14 +46,18 @@
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <script>
+import Footer from '../components/Footer.vue';
+
 export default {
+    components: {Footer},
     data: function () {
         return {
             user: {
-                username: "",
+                email: "",
                 password: "",
             },
             errors: {},
@@ -63,6 +67,8 @@ export default {
 
     methods: {
         loginUser() {
+            this.success = false;
+            this.errors = "";
             axios
                 .post("/api/login", this.user)
                 .then((res) => {
@@ -73,20 +79,20 @@ export default {
                     this.errors = err.response.data.errors;
                     console.log("Error has occured.");
                 });
-        },
+        }
+        ,
     },
 };
 </script>
 
 <style scoped>
 .split-screen {
+    margin-top: 83px;
     display: flex;
     flex-direction: column;
 }
 
-.left {
-    height: 200px;
-}
+
 
 .left,
 .right {
@@ -97,7 +103,7 @@ export default {
 .left {
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
         url("/images/register_img.jpg");
-
+    height: 80vh;
     background-size: cover;
     border-right: 0.2px solid gray;
 }
@@ -107,11 +113,15 @@ export default {
     -webkit-font-smoothing: antialiased;
     text-transform: uppercase;
 }
-.text-content h2 {
+.txt-content h2 {
+    font-family: Poppins, Montserrat, Helvetica, Arial;
+    font-size: 38px;
+    text-shadow: 2px 2px black;
     font-weight: bolder;
     letter-spacing: 5px;
 }
 .loginForm {
+    padding: 50px 0;
     color: black;
     text-align: center;
     width: 328px;
@@ -132,6 +142,19 @@ export default {
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.75rem;
+}
+.createAccount {
+    display: flex;
+    justify-content: center;
+}
+
+.createAccount a {
+    padding-left: 5px;
+}
+#title {
+    padding-bottom: 20px;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
 }
 
 #btn {

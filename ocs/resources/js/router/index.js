@@ -4,33 +4,47 @@ import Home from "../views/Home";
 import About from "../views/About";
 import Registration from "../views/Registration";
 import Login from "../views/Login";
-import Product from "../views/Product";
+import ProductPage from "../views/ProductPage";
+import Men from "../views/Men";
+import Women from "../views/Women";
 
 export const routes = [
     {
-        name: "home",
+        name: "Home",
         path: "/",
         component: Home,
     },
     {
-        name: "about",
+        name: "About",
         path: "/about",
         component: About,
     },
     {
-        name: "registration",
+        name: "Register",
         path: "/register",
         component: Registration,
     },
     {
-        name: "login",
+        name: "Login",
         path: "/login",
         component: Login,
     },
     {
-        name: "Product",
+        name: "ProductPage",
         path: "/products/:id",
-        component: Product,
+        component: ProductPage,
+        props: true,
+    },
+    {
+        name: "Women",
+        path: "/products/women",
+        component: Women,
+        props: true,
+    },
+    {
+        name: "Men",
+        path: "/products/men",
+        component: Men,
         props: true,
     },
 ];

@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('model');
             $table->unsignedInteger('discount');
             $table->double('price', 6, 2);
+            $table->string('header_image_link');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('gender_id');
             $table->timestamps();
@@ -33,9 +34,7 @@ class CreateProductsTable extends Migration
             $table->foreign('gender_id')
                 ->references('id')
                 ->on('genders')
-                ->onDelete('cascade');
-
-                
+                ->onDelete('cascade');               
 
                 // add on update and delete cascade if required!
         });
